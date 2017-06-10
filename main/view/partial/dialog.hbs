@@ -1,0 +1,35 @@
+<script id="login-tpl" type="text/x-template">
+    <header>
+        <span class="logo-icon"></span>
+    </header>
+    <p class="login-type-toggle">
+        <span class="password-login">账号密码登录</span>
+        <span class="msg-login none">短信验证码登录</span>
+    </p>
+    <ul class="form">
+        <li class="input-block">
+            <span class="phone-icon icon"></span>
+            <input class="phone input" type="text" placeholder="手机号" data-validate="phone,require">
+        </li>
+        <li class="input-block none">
+            <span class="pic-code-icon icon"></span>
+            <input class="input pic-code" type="text" placeholder="图片验证码" data-validate="number,require">
+            <img id="login-captcha" class="code-img" src="http://www.toodc.cn:80/captcha/picture" alt="验证码">
+        </li>
+        <li class="input-block msg-block">
+            <span class="msg-code-icon icon"></span>
+            <input class="msg-code input" type="text" placeholder="短信验证码" data-validate="number,require">
+            <span class="send-msg">发送验证码</span>
+        </li>
+        <li class="input-block password-block none">
+            <span class="msg-code-icon icon"></span>
+            <input class="input password" type="password" placeholder="密码">
+        </li>
+        <li class="error-li none">
+            <span class="tip"></span>
+        </li>
+        <li class="login-btn-li">
+            <button class="login-button">登录</button>
+        </li>
+    </ul>
+</script>

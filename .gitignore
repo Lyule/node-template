@@ -1,0 +1,12 @@
+node_modules/
+
+logs/*.log.*
+
+npm-debug.log
+
+public/.manifest.json
+
+public/dist
+
+*.iml
+.idea/
