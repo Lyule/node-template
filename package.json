@@ -4,7 +4,11 @@
   "description": "nodejs,express,hbs",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "./node_modules/.bin/nodemon -e js,hbs -i public/ app.js",
+    "pro": "NODE_ENV=\"production\" node app.js",
+    "static-server": "./node_modules/.bin/webpack-dev-server --config=public/webpack.config.js --context=public -w --inline --hot --colors",
+    "static": "./node_modules/.bin/webpack --config=public/webpack.config.js --context=public",
+    "build": "git pull && ./node_modules/.bin/webpack --config=public/webpack.config.js --context=public && pm2 reload clinks"
   },
   "repository": {
     "type": "git",

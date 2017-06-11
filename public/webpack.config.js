@@ -1,9 +1,3 @@
-/**
- * webpack config
- * @author: xuqi<xuqi@i0011.com>
- * @date: 2017/4/21
- */
-
 'use strict';
 
 const path = require('path');
@@ -30,19 +24,19 @@ let entry = {};
 
 // 通过约定的入口文件命名构建webpack打包入口
 // entry的name规则为：模块名.页面名
-shelljs.ls(path.join(__dirname, '/source/**/*.page.js')).forEach(f => {
+shelljs.ls(path.join(__dirname, '/development/**/*.page.js')).forEach(f => {
     let fp = f.split('/');
 
     let file = _.last(fp);
     let page = file.replace(/\.page.js$/, ''); // 从文件名中取出需要打包的文件的「页面名」
 
-    // 「模块名」取/source/module/，即source目录下一级目录名
-    let pos = _.indexOf(fp, 'source');
+    // 「模块名」取/development/module/，即source目录下一级目录名
+    let pos = _.indexOf(fp, 'development');
     let mod = fp.slice(pos + 1, pos + 2);
 
     // 防止直接将.page.js放到source目录中
     if (/\.page.js$/.test(mod)) {
-        console.log(err(`Please don't settle ${chalk.bold(file)} in folder source directly`));
+        console.log(err(`Please don't settle ${chalk.bold(file)} in folder development directly`));
         return;
     }
 
@@ -91,10 +85,10 @@ const config = {
                 test: /\.(png|jpg|gif)$/,
                 loader: 'file-loader',
                 options: {
-                    context: path.join(__dirname, 'source/'),
+                    context: path.join(__dirname, 'development/'),
                     outputPath: `${sourceBase}/imgs/`,
                     publicPath: `${domain}/`,
-                    regExp: 'public\/source\/(.+)\/img\/', // 解析掉路径中的img/
+                    regExp: 'public\/development\/(.+)\/img\/', // 解析掉路径中的img/
                     name: '[1]/[name].[ext]'.replace(/\/img\/, '\/'/) + (PRO_ENV ? '?[hash:6]' : '')
                 }
             },
@@ -106,7 +100,7 @@ const config = {
                         path.join(__dirname, './helpers')
                     ],
                     partialDirs: [
-                        path.join(__dirname, '../superman/view/partial')
+                        path.join(__dirname, '../main/view/partial')
                     ]
                 }
             }
@@ -176,7 +170,7 @@ let fonts = ['woff', 'woff2', 'ttf', 'eot', 'svg'].map(icon => {
         test: new RegExp(`\\.${icon}(\\?v=\\d+\\.\\d+\\.\\d+)?$`),
         loader: loader,
         options: {
-            context: path.join(__dirname, 'source/global/fontawesome/fonts'),
+            context: path.join(__dirname, 'development/global/fontawesome/fonts'),
             outputPath: `${sourceBase}/icons/`,
             publicPath: `${domain}/`,
             name: '[path][name].[ext]' + (PRO_ENV ? '?[hash:6]' : '')

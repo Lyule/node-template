@@ -1,0 +1,15 @@
+{
+  "title": "node-tmplate",
+  "code": "0",
+  "data": {
+    "title" : "welcome to node-template",
+    "name" : "Lyule",
+    "email" : "857277886@qq.com",
+    "content" : [
+      "这是一个脚手架",
+      "功能还待完善",
+      "如果有好的建议",
+      "请联系我"
+    ]
+  }
+}
