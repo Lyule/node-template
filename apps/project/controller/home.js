@@ -5,15 +5,19 @@ const _ = require('lodash');
 const homeModel = require('../model/home');
 
 const index = (req, res, next) => {
-    res.render('home', {
-        module: 'project',
-        page: 'home',
-        noFooter: true
-    });
+    return req.ctx(homeModel).getProjectHomeData().then( result =>  {
+        
+        res.render('home', {
+            module: 'project',
+            page: 'home',
+            noFooter: true,
+            info: result
+        });
+    }).catch(next);
 }
 
 const info = (req, res, next) => {
-    return res.ctx().getProjectHomeData().then( data =>  {
+    return req.ctx(homeModel).getProjectHomeData().then( data =>  {
         res.send(data);
     })
 }

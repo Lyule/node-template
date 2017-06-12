@@ -5,7 +5,7 @@ const request = require('request');
 
 
 class home extends global.app.BaseModel {
-    constructor (ctx) { // req ,res
+    constructor (ctx) { // ctx : {req ,res}
         super(ctx);
     }
 
@@ -13,9 +13,7 @@ class home extends global.app.BaseModel {
         return Promise.all([
             this.api.get('/data/home.json')
         ]).then( result => {
-            homeModel
             return result;
-
         })
     }
 }
