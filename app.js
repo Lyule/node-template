@@ -3,11 +3,13 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 const path = require('path');
+const hbs = require('express-hbs');
 
 const config = require('./config');
-const lib = require('../lib');
+const lib = require('./lib');
 
 lib.global(config,'app');
 
@@ -15,6 +17,7 @@ app.use(express.static(path.join(__dirname,'public')));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(cookieParser());
 
 app.engine('hbs', hbs.express4({
     extname: '.hbs',
@@ -25,11 +28,13 @@ app.engine('hbs', hbs.express4({
 app.set('view engine','hbs');
 app.set('views', path.join(__dirname,'main/view'));
 
-app.use('/',(res,req)=>{
-    req.send('hello world');
-});
-
 try {
+    const render = require('./main/middleware/render');
+    const ctx = require('./main/middleware/ctx');
+    const errorHanlde = require('./main/middleware/error-handle');
+
+    app.use(render(require('./public/.manifest.json')));
+    app.use(ctx());
 
     require('./dispatch')(app);
 
@@ -40,6 +45,4 @@ try {
     console.log(err);
 }
 
-app.listen(config.port || 3000, function() {
-    console.log(`${config.app} service start`);
-});
+app.listen(config.port || 3000);

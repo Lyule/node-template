@@ -11,66 +11,8 @@
         {{/each}}
     </head>
     <body>
-        {{#unless noHead}}
-            <div class="top-nav">
-                <a href="/" class="logo"></a>
-
-                {{!--<div class="search clearfix">
-                    <div class="slide-down">
-                        <span class="cur-area">
-                            上海
-                            <i class="fa fa-angle-down"></i>
-                        </span>
-                        <ul class="area-list">
-                            <li class="area" data-id="{{id}}">{{name}}</li>
-                        </ul>
-                    </div>
-                    <input class="search-input" type="text" placeholder="请输入区域或地标进行搜索">
-                    <span class="search-btn">
-                        <i class="fa fa-search"></i>
-                    </span>
-                </div>--}}
-
-                <div class="operations">
-                    <a class="home" href="/">首页</a>
-                    <span class="find-store">一键找仓</span>
-                    <span class="rent-out">一键出租</span>
-                    <div class="login-status">
-                        <span class="sep-line"></span>
-                        {{#if landed}}
-                            <a class="user-center" href="/account/follow">个人中心</a>
-                            <a class="logout">退出</a>
-                        {{^}}
-                            <span class="login-btn">登录  </span>
-                        {{/if}}
-                    </div>
-                </div>
-            </div>
-        {{/unless}}
         {{{body}}}
 
-        {{#unless noFooter}}
-            <div class="footer">
-                <div class="inner-center clearfix">
-                    <div class="code" title="头等仓TOODC"></div>
-                    <div class="about">
-                        <div class="links">
-                            <a href="/about">关于我们</a>
-                            <a href="/join">加入我们</a>
-                            <a href="/cooperation">商务合作</a>
-                        </div>
-                    </div>
-                    <div class="info">
-                        <p><i class="icon-emai"></i>邮箱：inquiry@toodc.cn</p>
-                        <p><i class="icon-website"></i>官网：www.toodc.cn</p>
-                        <p><i class="icon-tel"></i>电话：021-62567210</p>
-                    </div>
-                </div>
-                <div class="copyright">Copyright © 2015-{{nowYear}} 沪ICP备15052478号-3</div>
-            </div>
-        {{/unless}}
-        {{> dialog}}
-        <script src="http://api.map.baidu.com/api?v=2.0&ak=EA9ec710bfc7388ef6c86c656ffef281"></script>
         {{#each js}}
             <script src="{{.}}"></script>
         {{/each}}

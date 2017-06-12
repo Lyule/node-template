@@ -9,7 +9,7 @@ const _ = require('lodash');
 const env = process.env.NODE_ENV || 'development';
 
 let config = {
-    port: 6666,
+    port: 5001,
     app: 'node-temlate',
     name: 'node-temlate',
     apiUrl: '',

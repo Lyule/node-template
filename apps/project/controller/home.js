@@ -4,12 +4,21 @@ const _ = require('lodash');
 
 const homeModel = require('../model/home');
 
-const index = (req,res,next) => {
-    return res.ctx(homeModel).getProjectHomeData().then(result =>  {
-        res.render('home',result);
-    }).catch(next);
+const index = (req, res, next) => {
+    res.render('home', {
+        module: 'project',
+        page: 'home',
+        noFooter: true
+    });
+}
+
+const info = (req, res, next) => {
+    return res.ctx().getProjectHomeData().then( data =>  {
+        res.send(data);
+    })
 }
 
 module.exports = {
-    index : index
+    index: index,
+    info: info
 }
